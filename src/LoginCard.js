@@ -3,8 +3,11 @@ import './LoginCard.css';
 
 function LoginCard(){
   return(
-    <div >
+    <div className="logincard">
       <p>Please enter Login credentials</p>
+      <input placeholder='Email' />
+      <br/>
+      <input placeholder='Password' />
     </div>
   );
 }
