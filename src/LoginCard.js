@@ -5,9 +5,9 @@ function LoginCard(){
   return(
     <div className="logincard">
       <p>Please enter Login credentials</p>
-      <input placeholder='Email' />
+      <input placeholder='Email' type='text'/>
       <br/>
-      <input placeholder='Password' />
+      <input placeholder='Password' type='password'/>
     </div>
   );
 }
