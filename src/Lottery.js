@@ -9,7 +9,6 @@ function App() {
           Lottery Contract deployed on Rinkeby network
         </h1>
         <LoginCard/>
-        <LoginCard/>
     </div>
   );
 }
