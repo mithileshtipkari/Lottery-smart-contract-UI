@@ -31,7 +31,7 @@ class Lottery extends Component {
           </h1>
           <LoginCard/>
           <p>This contract is managed by {this.state.manager}</p>
-          <p>There are currently {this.state.players.length} people competing to win {web3.utils.fromWei(this.state.balance, 'ether')} ether!</p>
+          <p>There are currently <strong>{this.state.players.length}</strong> people who are competing, to win <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!</p>
       </div>
     );
   };
