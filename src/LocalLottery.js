@@ -3,8 +3,7 @@ import web3 from './web3';
 const address = '0x8F42Ff74cF55A14bAcb2E286DB93909386729095';
 
 const abi = [
-  {
-    "constant":true,
+  {"constant":true,
     "inputs":[{"name":"","type":"uint256"}],
     "name":"listOfPlayers",
     "outputs":[{"name":"","type":"address"}],
