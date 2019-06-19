@@ -33,6 +33,15 @@ class Lottery extends Component {
           <p>This contract is managed by {this.state.manager}</p>
           <p>There are currently <strong>{this.state.players.length}</strong> people who are competing, to win <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!</p>
           <hr/>
+          <form>
+              <h3>Wanna try your luck?</h3>
+              <h4>Enter into this Lottery by sending 0.01 or more Ether</h4>
+              <div>
+                  <label>Enter amount of Ether to enter lottery   </label>
+
+                  <input placeholder="amount of ether"></input>
+              </div>
+          </form>
       </div>
     );
   };
