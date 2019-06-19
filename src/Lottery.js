@@ -29,9 +29,10 @@ class Lottery extends Component {
           <h1>
             Lottery Contract deployed on Rinkeby network
           </h1>
-          <LoginCard/>
+
           <p>This contract is managed by {this.state.manager}</p>
           <p>There are currently <strong>{this.state.players.length}</strong> people who are competing, to win <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!</p>
+          <hr/>
       </div>
     );
   };
