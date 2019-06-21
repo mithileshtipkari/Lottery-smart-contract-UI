@@ -10,7 +10,9 @@ class Lottery extends Component {
     this.state ={manager: '',
                   players: [],
                   balance: '',
-                  value: ''
+                  value: '',
+                  message: '',
+                  accounts: []
                 };
   }
 
@@ -19,12 +21,25 @@ class Lottery extends Component {
     const manager = await localLottery.methods.manager().call(); //fetch manager address
     const players = await localLottery.methods.getPlayers().call(); //fetch list of players
     const balance = await web3.eth.getBalance(localLottery.options.address); //fetch balance of contract
-    this.setState({ manager, players, balance });
+    const accounts = await web3.eth.getAccounts();
+
+    this.setState({ manager, players, balance, accounts });
   }
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
+    event.preventDefault();
 
-  }
+    const accounts = await web3.eth.getAccounts();
+    console.log('acc-', accounts);
+    this.setState({message: 'Waiting for transaction to complete...'});
+    await localLottery.methods.enter().send({
+      from: accounts[1],
+      value: web3.utils.toWei(this.state.value, 'ether')
+    });
+
+    this.setState({message: 'You have been entered into Lottery!'});
+  };
+
   render(){
     // console.log(web3.version);
     // console.log(web3.currentProvider);
@@ -37,8 +52,9 @@ class Lottery extends Component {
 
           <p>This contract is managed by {this.state.manager}</p>
           <p>There are currently <strong>{this.state.players.length}</strong> people who are competing, to win <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!</p>
+          <p>Accounts available are:{this.state.accounts.length}</p>
           <hr/>
-          <form onSubmit={this.onSubmit()}>
+          <form onSubmit={this.onSubmit}>
               <h3>Wanna try your luck?</h3>
               <h4>Enter into this Lottery by sending 0.01 or more Ether</h4>
               <div>
@@ -49,9 +65,11 @@ class Lottery extends Component {
                       value={this.state.value}
                       onChange={event => this.setState({value : event.target.value})}/>
               </div>
-              <p>The amount entered in Lottery is - {this.state.value}</p>
+              <br/>
               <button>Enter to Lottery</button>
           </form>
+          <hr/>
+          <h2>{this.state.message}</h2>
       </div>
     );
   };
