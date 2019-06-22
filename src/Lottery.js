@@ -32,16 +32,26 @@ class Lottery extends Component {
     console.log('acc-', accounts);
     this.setState({message: 'Waiting for transaction to complete...'});
     await localLottery.methods.enter().send({
-      from: accounts[1],
+      from: accounts[0],
       value: web3.utils.toWei(this.state.value, 'ether')
     });
-
+    console.log('after entering lottery');
     this.setState({message: 'You have been entered into Lottery!'});
   };
 
   pickWinner = async () =>{
     console.log('pick winner');
-  }
+    const accounts = await web3.eth.getAccounts();
+    console.log('acc-', accounts);
+
+    this.setState({message: 'Waiting for transaction to complete...'});
+
+    await localLottery.methods.pickWinner().send({
+      from: accounts[0]
+    });
+
+    this.setState({message: 'A winner is picked!'});
+  };
 
   render(){
     // console.log(web3.version);
@@ -72,9 +82,10 @@ class Lottery extends Component {
               <button>Enter to Lottery</button>
           </form>
           <hr/>
-          <h2>{this.state.message}</h2>
           <h3>Let's see who's the winner!</h3>
           <button onClick={this.pickWinner}>Pick Winner</button>
+          <hr/>
+          <h2>{this.state.message}</h2>
       </div>
     );
   };
