@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Lottery.css';
-import LoginCard from './LoginCard';
 import web3 from './web3';
 import localLottery from './LocalLottery';
 
@@ -40,6 +39,10 @@ class Lottery extends Component {
     this.setState({message: 'You have been entered into Lottery!'});
   };
 
+  pickWinner = async () =>{
+    console.log('pick winner');
+  }
+
   render(){
     // console.log(web3.version);
     // console.log(web3.currentProvider);
@@ -70,6 +73,8 @@ class Lottery extends Component {
           </form>
           <hr/>
           <h2>{this.state.message}</h2>
+          <h3>Let's see who's the winner!</h3>
+          <button onClick={this.pickWinner}>Pick Winner</button>
       </div>
     );
   };
