@@ -59,8 +59,8 @@ class Lottery extends Component {
               <h3>Wanna try your luck?</h3>
               <h4>Enter into this Lottery by sending 0.01 or more Ether</h4>
               <div>
-                  <label>Enter amount of Ether to enter lottery</label>
-
+                  <label>Enter amount of Ether to enter lottery:</label>
+                  <span> </span>
                   <input
                       placeholder="amount of ether"
                       value={this.state.value}
