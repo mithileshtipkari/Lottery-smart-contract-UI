@@ -1,5 +1,6 @@
 .Lottery {
   text-align: center;
+  background-image: linear-gradient(red, green, blue);
 }
 
 /* .Lottery-logo {
