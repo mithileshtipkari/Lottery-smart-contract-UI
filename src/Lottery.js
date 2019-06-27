@@ -35,14 +35,18 @@ class Lottery extends Component {
   };
 
   pickWinner = async () =>{
-    const accounts = await web3.eth.getAccounts();
+    if(this.state.value >= 0.01){
+      const accounts = await web3.eth.getAccounts();
 
-    this.setState({message: 'Waiting for transaction to complete...'});
+      this.setState({message: 'Waiting for transaction to complete...'});
 
-    await localLottery.methods.pickWinner().send({
-      from: accounts[0]
-    });
-    this.setState({message: 'A winner is picked!'});
+      await localLottery.methods.pickWinner().send({
+        from: accounts[0]
+      });
+      this.setState({message: 'A winner is picked!'});
+    } else {
+      alert("Please enter 0.01 ether or more to enter into the Lottery");
+    }
   };
 
   render(){
